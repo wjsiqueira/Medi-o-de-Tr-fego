@@ -1,2 +1,5 @@
 Qual é o overhead do experimento?
 R. Monitorar a requisição e as respostas do polling.
+
+Atividades:
+1. Inserir uma tabela para monitoramento de requisições e respostas;

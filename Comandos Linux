@@ -1,0 +1,81 @@
+Verificar a versão do Ubuntu
+cat /etc/issue
+
+Configurar teclado
+sudo setxkbmap -model abnt2 -layout br
+
+Pegar endereço IP
+sudo dhclient
+sudo dhclient eth1
+
+Verificar status do FTP
+dpkg -l | grep 'ftp'
+netstat -l | grep ftp
+
+Restart do SSH
+sudo /etc/init.d/ssh restart
+
+M5]j1R3O:@[Kk(l
+
+
+PathFlow
+
+Mininet
+sudo mn --controller=remote,192.168.56.104 --custom ./MyTopo_spineandleaf_2spines_4leafs_1hostsperleaf.py --topo mytopo --mac -x
+
+
+POX
+SDN
+sudo pox/pox.py forwarding.l2_flowvisor openflow.discovery 
+
+PathFlow
+sudo pox/pox.py pathflow_v0_2 openflow.discovery openflow.spanning_tree
+
+./pox.py pathflow_v0_2 openflow.discovery openflow.spanning_tree
+
+
+
+
+
+
+
+
+
+
+
+
+SDN
+sudo pox/pox.py forwarding.l2_flowvisor forwarding.l2_multi openflow.discovery openflow.spanning_tree pathflow_v0_2
+(o pingall funciona desde que se retire o pathflow_v0_2)
+
+PathFlow
+sudo pox/pox.py openflow.discovery openflow.spanning_tree forwarding.l2_flowvisor pathflow_v0_2
+
+
+
+
+
+
+sudo ~/pox/pox.py forwarding.l2_learning
+(Inicializar POX)
+
+sudo pox/pox.py openflow.discovery openflow.spanning_tree
+(funcionou para o mobility.py)
+
+sudo pox/pox.py pathflow_v0_2 openflow.discovery openflow.spanning_tree
+(funcionou para a topologia 1)
+
+sudo pox/pox.py pathflow_srt_rm_1 openflow.discovery openflow.spanning_tree
+
+
+
+
+sudo pox/pox.py forwarding.flowvisor forwarding.l2_multi openflow.discovery openflow.spanning_tree pathflow_v0_2
+(forwarding.flowvisor - Apresentando erro de Módulo não encontrado)
+
+sudo pox/pox.py forwarding.l2_flowvisor forwarding.l2_multi openflow.discovery pathflow_v0_2
+(tentativa do pingall sem o openflow.spanning_tree)
+
+sudo ovs-ofctl dump-flows s1
+
+dpctl dump-flows tcp:192.168.56.104:6633

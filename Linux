@@ -106,3 +106,113 @@ sudo pox/pox.py forwarding.l2_flowvisor forwarding.l2_multi openflow.discovery p
 sudo ovs-ofctl dump-flows s1
 
 dpctl dump-flows tcp:192.168.56.104:6633
+
+
+
+
+
+
+
+cat /etchttps://tecadmin.net/install-zabbix-on-ubuntu/#
+
+sudo gedit /etc/zabbix/zabbix_server.conf 
+sudo gedit /etc/zabbix/web/zabbix.conf.php 
+
+
+
+Step 1: Installing Apache, MySQL and PHP
+sudo apt-get update
+sudo apt-get install apache2 
+sudo apt-get install mysql-server 
+sudo apt-get install php5 php5-cli php5-common php5-mysql
+
+
+Update timezone in php configuration file /etc/php5/apache2/php.ini. Like below:
+
+[Date]
+; http://php.net/date.timezone
+date.timezone = 'Asia/Kolkata'
+
+
+Step 2: Adding Apt Repository
+wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
+sudo dpkg -i zabbix-release_3.0-1+trusty_all.deb
+sudo apt-get update
+
+
+Step 3: Install Zabbix Server
+sudo apt-get install zabbix-server-mysql zabbix-frontend-php
+
+
+Step 4: Create Database Schema
+$ mysql -u root -p
+
+mysql> CREATE DATABASE zabbixdb;
+mysql> GRANT ALL on zabbixdb.* to zabbix@localhost IDENTIFIED BY 'password';
+mysql> FLUSH PRIVILEGES;
+
+Now restart zabbix database schema in newly created database
+cd /usr/share/doc/zabbix-server-mysql
+zcat create.sql.gz | mysql -u root -p zabbixdb
+
+Step 5: Edit Zabbix Configuration File /etc/zabbix/zabbix_server.conf 
+DBHost=localhost
+DBName=zabbixdb
+DBUser=zabbix
+DBPassword=password
+
+Step 6: Restart Apache and Zabbix
+sudo service apache2 restart
+sudo service zabbix-server restart
+
+Step 7: Start Zabbix Web Installer
+
+
+http://localhost/zabbix/
+
+
+Instalando o Zabbix Agent
+$ wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
+$ sudo dpkg -i zabbix-release_3.0-1+trusty_all.deb
+$ sudo apt-get update
+
+
+
+
+Adicionando um Host
+
+/etc/init.d/zabbix-server status
+/etc/init.d/zabbix-server restart
+/etc/init.d/zabbix-server start
+/etc/init.d/zabbix-server stop
+
+
+
+
+
+
+
+Instalando a VBox
+
+Comando para verificar o nome código da distribuição
+cat /etc/[A-Za-z]*[_-][rv]e[lr]*
+
+sudo gedit /etc/apt/sources.list
+
+
+
+
+
+
+apt-cache policy virtualbox
+
+sudo add-apt-repository multiverse
+sudo apt-get update
+sudo apt-get install virtualbox
+
+
+
+
+
+
+/[A-Za-z]*[_-][rv]e[lr]*

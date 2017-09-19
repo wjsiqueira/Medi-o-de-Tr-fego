@@ -112,6 +112,40 @@ dpctl dump-flows tcp:192.168.56.104:6633
 
 
 
+CONFIGURANDO O DHCP
+
+Configurando o DHCP Server
+
+sudo apt-get install isc-dhcp-server
+
+gedit /etc/dhcp/dhcpd.conf
+
+gedit /etc/default/isc-dhcp-server
+
+sudo service isc-dhcp-server restart
+sudo service isc-dhcp-server start
+sudo service isc-dhcp-server stop 
+
+
+
+
+Configurando o DHCP Client
+
+gedit /etc/network/interfaces
+auto eth0
+iface eth0 inet dhcp
+sudo ifup eth0
+
+dhclient eth0 
+
+
+
+
+
+
+
+CONFIGURANDO O ZABBIX
+
 
 cat /etchttps://tecadmin.net/install-zabbix-on-ubuntu/#
 

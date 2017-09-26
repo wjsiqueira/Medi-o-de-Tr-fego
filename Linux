@@ -4,10 +4,6 @@ cat /etc/issue
 Configurar teclado
 sudo setxkbmap -model abnt2 -layout br
 
-Pegar endereço IP
-sudo dhclient
-sudo dhclient eth1
-
 Verificar status do FTP
 dpkg -l | grep 'ftp'
 netstat -l | grep ftp
@@ -17,22 +13,21 @@ sudo /etc/init.d/ssh restart
 
 Rede
 
+Pegar endereço IP
+sudo dhclient
+sudo dhclient eth1
+
 configurando uma vlan
 ip link add link eth0 name eth0.1 type vlan id 1
-
 
 Configurando endereço IP
 sudo ip addr add 10.150.0.5/25 dev eth0.1
 
-
 Adicionando rota
 route add -net 10.150.0.0 netmask 255.255.255.0 gw 10.150.0.5 dev eth0 -p
 
-
 Configurando um túnel
 sudo ip link add gt0 type gretap remote 10.150.0.5 local 10.150.0.4
-
-
 
 
 Listar pacotes instalados com o PIP 
@@ -237,8 +232,8 @@ sudo gedit /etc/apt/sources.list
 
 
 
-
 apt-cache policy virtualbox
+
 
 sudo add-apt-repository multiverse
 sudo apt-get update

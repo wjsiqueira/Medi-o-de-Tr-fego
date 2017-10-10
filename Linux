@@ -22,6 +22,13 @@ ip link add link eth0 name eth0.1 type vlan id 1
 
 Configurando endereço IP
 sudo ip addr add 10.150.0.5/25 dev eth0.1
+ou 
+sudo gedit /etc/network/interfaces
+iface eth1 inet static
+address 10.10.10.1
+netmask 255.255.255.0
+network 10.10.10.0
+broadcast 10.10.10.255
 
 Adicionando rota
 route add -net 10.150.0.0 netmask 255.255.255.0 gw 10.150.0.5 dev eth0 -p

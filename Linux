@@ -30,7 +30,7 @@ Configurando um túnel
 sudo ip link add gt0 type gretap remote 10.150.0.5 local 10.150.0.4
 
 Reestartando interfaces de rede
-sudo service networ-manager restart
+sudo service network-manager restart
 ou
 sudo service networking restart
 ou 

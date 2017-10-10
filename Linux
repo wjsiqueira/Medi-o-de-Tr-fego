@@ -29,6 +29,13 @@ route add -net 10.150.0.0 netmask 255.255.255.0 gw 10.150.0.5 dev eth0 -p
 Configurando um túnel
 sudo ip link add gt0 type gretap remote 10.150.0.5 local 10.150.0.4
 
+Reestartando interfaces de rede
+sudo service networ-manager restart
+ou
+sudo service networking restart
+ou 
+sudo /etc/init.d/network restart 
+
 
 Listar pacotes instalados com o PIP 
 pip list | cut -d" " -f1 | xargs pip show -f 

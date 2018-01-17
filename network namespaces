@@ -42,6 +42,7 @@ sudo ip link add h1-eth1 type veth peer name s1-eth1
 sudo ip link add h2-eth1 type veth peer name s1-eth2
 sudo ip link set h1-eth1 netns h1
 sudo ip link set h2-eth1 netns h2
+ifconfig s1 inet 10.0.0.100/8
 sudo ovs-vsctl add-port s1 s1-eth1
 sudo ovs-vsctl add-port s1 s1-eth2
 sudo ovs-vsctl set-controller s1 tcp:127.0.0.1

@@ -1,0 +1,63 @@
+from: https://sreeninet.wordpress.com/2014/11/30/mininet-internals-and-network-namespaces/
+
+Namespaces Environment
+
+1. Create hosts namespaces:
+sudo ip netns add h1
+sudo ip netns add h2
+
+2. Create openvswitch namespace:
+sudo ovs-vsctl add-br s1
+
+3. Create vethernet links:
+sudo ip link add h1-eth1 type veth peer name s1-eth1
+sudo ip link add h2-eth1 type veth peer name s1-eth2
+
+4. Move host ports into namespaces:
+sudo ip link set h1-eth1 netns h1
+sudo ip link set h2-eth1 netns h2
+
+5. Connect switch ports to OVS:
+sudo ovs-vsctl add-port s1 s1-eth1
+sudo ovs-vsctl add-port s1 s1-eth2
+
+6. Connect controller to switch:
+sudo ovs-vsctl set-controller s1 tcp:127.0.0.1
+
+7. Setup ip:
+sudo ip netns exec h1 ifconfig h1-eth1 10.1
+sudo ip netns exec h1 ifconfig lo up
+sudo ip netns exec h2 ifconfig h2-eth1 10.2
+sudo ip netns exec h2 ifconfig lo up
+sudo ifconfig s1-eth1 up
+sudo ifconfig s1-eth2 up
+
+
+
+Validando as conexões
+
+Listando os namespaces:
+ip netns list
+
+Verificando informações de rede do host h1:
+sudo ip netns exec h1 ifconfig
+
+Verificando informações de rede do host h2:
+sudo ip netns exec h2 ifconfig
+
+Verificando a lista de links:
+ip link list
+
+Verificando a lista de links do h1:
+sudo ip netns exec h1 ip link list
+
+Verificando a lista de links do h2:
+sudo ip netns exec h2 ip link list
+
+Detalhes do switch:
+sudo ovs-vsctl show
+
+
+
+Testando as conexões:
+sudo ip netns exec h1 ping -c1 10.2

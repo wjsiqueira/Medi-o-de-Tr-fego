@@ -55,6 +55,8 @@ sudo ifconfig s1-eth2 up
 sudo ifconfig s1 10.0.0.100 up
 sudo ovs-vsctl set bridge s1 protocols=OpenFlow10
 
+
+
 sudo ifconfig s1 inet 10.0.0.100/8
 
 

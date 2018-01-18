@@ -44,7 +44,7 @@ sudo ip link set h1-eth1 netns h1
 sudo ip link set h2-eth1 netns h2
 sudo ovs-vsctl add-port s1 s1-eth1
 sudo ovs-vsctl add-port s1 s1-eth2
-sudo ovs-vsctl set-controller s1 tcp:127.0.0.1
+sudo ovs-vsctl set-controller s1 tcp:127.0.0.1:6633
 sudo ip netns exec h1 ifconfig h1-eth1 10.1
 sudo ip netns exec h1 ifconfig lo up
 sudo ip netns exec h2 ifconfig h2-eth1 10.2
